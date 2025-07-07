@@ -1,0 +1,35 @@
+# dune build
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Shared cache location: /Users/luke/.cache/dune/db
+# Workspace root: /Users/luke/Desktop/ETH/Compiler/hw2/assignment
+# Auto-detected concurrency: 4
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; instrument_with = []
+#  }
+$ /Users/luke/.opam/4.13.1/bin/ocamlc.opt -config > /var/folders/9j/jpty5n2x4mvbj5nrqkb2c78c0000gn/T/dune_b8a624_output
+$ (cd _build/default && /Users/luke/.opam/4.13.1/bin/ocamldep.opt -modules -impl simulator.ml) > _build/default/.main.eobjs/dune__exe__Simulator.impl.d
+$ (cd _build/default && /Users/luke/.opam/4.13.1/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -no-strict-formats -g -bin-annot -I .main.eobjs/byte -no-alias-deps -opaque -open Dune__exe -o .main.eobjs/byte/dune__exe__Simulator.cmo -c -impl simulator.ml)
+> File "simulator.ml", lines 179-185, characters 4-53:
+> 179 | ....match xs with
+> 180 |       | [] -> []
+> 181 |       | Imm (Lit n) as imm :: rest -> imm :: unifier rest m
+> 182 |       | Ind1 (Lit n) as ind :: rest -> ind :: unifier rest m
+> 183 |       | Ind2 r :: rest -> Ind1 (Lit (reg_val r)) :: unifier rest m
+> 184 |       | Ind3 (Lit x, y) :: rest -> Ind1 (Lit (imm_add x y)) :: unifier rest m
+> 185 |       | Reg r as reg :: rest -> reg :: unifier rest m
+> Warning 8 [partial-match]: this pattern-matching is not exhaustive.
+> Here is an example of a case that is not matched:
+> Imm (Lbl _)::_
+> File "simulator.ml", line 286, characters 24-27:
+> 286 |               | Addq -> add dest_val src_val
+>                               ^^^
+> Error: Unbound value add
+> Hint: Did you mean addr?
+[2]
